@@ -1,27 +1,27 @@
-import { useRef, useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import useClickOutside from "./useClickOutside";
 
 function App() {
-  const [show, setShow] = useState(true);
-  const ref = useRef();
+  const [show, setShow] = useState(false);
+  const wrapperRef = useRef(null);
 
-  useClickOutside(ref, () => {
+  const handleClose = useCallback(() => {
+    console.log("Dışına tıklandı, mesaj gizlenecek");
     setShow(false);
-  });
+  }, []);
+
+  useClickOutside(wrapperRef, handleClose);
 
   return (
-    <div style={{ padding: "50px" }}>
-      {!show && (
-        <button onClick={() => setShow(true)}>
-          Show Message
-        </button>
-      )}
+    <div style={{ padding: "100px" }}>
+      {/* ref artık tüm wrapper divi kapsıyor */}
+      <div ref={wrapperRef} style={{ display: "inline-block" }}>
+        {!show && (
+          <button onClick={() => setShow(true)}>Show</button>
+        )}
 
-      {show && (
-        <div ref={ref}>
-          <p>If you click outside, I will disappear</p>
-        </div>
-      )}
+        {show && <p>Mesaj burada</p>}
+      </div>
     </div>
   );
 }
