@@ -15,13 +15,13 @@ function App() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <button style={{ margin: "20px", padding: "10px" }} onClick={scrollToBottom}>Scroll to Bottom</button>
+      <button style={{ margin: "20px", padding: "10px", borderRadius: "8px" }} onClick={scrollToBottom}>Scroll to Bottom</button>
 
       {data && data.length > 0 && data.map((item) => (
         <h4 style={{ marginBottom: "20px", color: "#00b4d8" }} key={item.id}>{item.title}</h4>
       ))}
 
-      <button style={{ margin: "20px", padding: "10px" }} onClick={scrollToTop}>Scroll to Top</button>
+      <button style={{ margin: "20px", padding: "10px", borderRadius: "8px" }} onClick={scrollToTop}>Scroll to Top</button>
     </div>
   );
 }
